@@ -55,550 +55,395 @@ Three.js is the dominant 3D library for the web, with 2.7 million NPM downloads 
 - Handle canvas resizing and device pixel density
 
 **Sub-skills:**
-- Shadow map configuration and quality settings
+- Shadow map configuration
 - Tone mapping for HDR rendering
-- Output encoding (sRGB, linear)
-- Performance profiling and optimization
-- Multiple render target (MRT) usage
+- Color space management (sRGB, Linear)
+- Render target usage for off-screen rendering
 
 ---
 
-## Geometry Skills
+## Geometry Creation Skills
 
 ### 4. Primitive Geometries
 
-**Skill: Built-in Geometry Creation**
-- BoxGeometry, SphereGeometry, CylinderGeometry
-- PlaneGeometry, CircleGeometry, RingGeometry
-- TorusGeometry, TorusKnotGeometry, ConeGeometry
-- IcosahedronGeometry, OctahedronGeometry, TetrahedronGeometry
+**Skill: Built-in Geometry Usage**
+- `BoxGeometry`, `SphereGeometry`, `CylinderGeometry`
+- `PlaneGeometry`, `TorusGeometry`, `ConeGeometry`
+- Parameter control (segments, radius, detail levels)
+- Geometry transformation and positioning
 
 **Sub-skills:**
-- Parameter tuning (segments, radius, detail levels)
-- UV mapping understanding for textures
-- Geometry merging for performance
-- Buffer geometry conversion
+- Segment density for performance vs. quality tradeoffs
+- UV mapping for textures on primitives
+- Geometry merging for batch rendering
 
-### 5. Custom Geometry Construction
+### 5. Custom Geometry
 
-**Skill: BufferGeometry Programming**
-- Create custom geometries from vertices
-- Define vertex attributes (position, normal, UV, color)
-- Build indexed vs non-indexed geometry
-- Compute vertex normals and tangents
-
-**Sub-skills:**
-- Typed array management (Float32Array, Uint16Array)
-- Instanced geometry for repeated objects
-- Dynamic geometry updates
-- Memory-efficient attribute handling
-- Morph targets for animations
-
-### 6. Procedural Modeling
-
-**Skill: Parametric Geometry Generation**
-- LatheGeometry from 2D profiles
-- ExtrudeGeometry from 2D shapes
-- TubeGeometry along curves
-- ParametricGeometry with custom functions
+**Skill: BufferGeometry Creation**
+- Define vertices with `Float32Array`
+- Set attributes (position, normal, uv, color)
+- Configure vertex indices for face definitions
+- Update geometries dynamically
 
 **Sub-skills:**
-- Shape and path construction
-- Extrude settings (depth, bevel, steps)
-- Curve generation (splines, Bezier, Catmull-Rom)
-- Procedural terrain and landscapes
+- Typed array management for performance
+- Attribute interleaving
+- Vertex normal calculation
+- Dynamic buffer updates with `needsUpdate` flag
+
+**Skill: Procedural Generation**
+- Parametric geometry creation
+- Noise-based terrain generation
+- Mathematical surface definitions
+- L-system and fractal structures
+
+### 6. Model Loading
+
+**Skill: External Model Import**
+- GLTF/GLB loading (recommended format)
+- FBX, OBJ, Collada format support
+- Draco compression for optimized models
+- Animation extraction from imported models
+
+**Sub-skills:**
+- Asset pipeline optimization
+- Texture and material preservation
+- Scene graph extraction
+- Progressive loading for large models
 
 ---
 
-## Material Skills
+## Materials & Texture Skills
 
-### 7. Standard Materials
+### 7. Material Systems
 
-**Skill: PBR Material Configuration**
-- MeshStandardMaterial (metallic-roughness workflow)
-- MeshPhysicalMaterial (advanced PBR)
-- Configure albedo, metalness, roughness maps
-- Implement clearcoat, sheen, transmission effects
-
-**Sub-skills:**
-- Texture map application (diffuse, normal, displacement)
-- Material property animation
-- Environment mapping and IBL
-- Subsurface scattering simulation
-- Anisotropic reflections
-
-### 8. Special-Purpose Materials
-
-**Skill: Specialized Material Usage**
-- MeshBasicMaterial for unlit surfaces
-- MeshLambertMaterial for diffuse-only lighting
-- MeshPhongMaterial for specular highlights
-- MeshToonMaterial for cel-shading
-- MeshNormalMaterial for debugging
-- MeshDepthMaterial for depth rendering
+**Skill: PBR Materials (Physical-Based Rendering)**
+- `MeshStandardMaterial` - Metallic/roughness workflow
+- `MeshPhysicalMaterial` - Advanced properties (clearcoat, transmission)
+- Configure metalness, roughness, and environment maps
+- IBL (Image-Based Lighting) setup
 
 **Sub-skills:**
-- Wireframe rendering
-- Double-sided materials
-- Transparency and alpha blending
-- Material blending modes
-- Vertex colors integration
+- Texture map application (albedo, normal, roughness, metallic, AO)
+- Environment map configuration
+- Material properties for different surface types
+- Anisotropy and sheen for fabric rendering
 
-### 9. Shader Materials
+**Skill: Non-Photorealistic Materials**
+- `MeshBasicMaterial` - Unlit rendering
+- `MeshLambertMaterial` - Diffuse lighting only
+- `MeshPhongMaterial` - Specular highlights
+- `MeshToonMaterial` - Cel-shading effects
 
-**Skill: Custom Shader Development**
-- ShaderMaterial for full GLSL control
-- RawShaderMaterial for minimal overhead
-- Write vertex and fragment shaders
-- Pass uniforms and attributes to shaders
+**Skill: Special Materials**
+- `ShaderMaterial` - Custom GLSL shaders
+- `RawShaderMaterial` - Full control over vertex/fragment shaders
+- `PointsMaterial` - Particle system rendering
+- `LineMaterial` - Advanced line rendering
+
+### 8. Texture Mapping
+
+**Skill: Texture Loading and Application**
+- Load images with `TextureLoader`
+- Apply to material properties
+- Configure wrapping modes (repeat, clamp, mirror)
+- Set filtering (nearest, linear, mipmaps)
 
 **Sub-skills:**
-- GLSL syntax and built-in functions
-- Shader debugging techniques
-- Uniform value passing and animation
-- Texture sampling in shaders
-- Screen-space effects
-- Noise functions and procedural textures
+- UV coordinate manipulation
+- Texture transformation (offset, repeat, rotation)
+- Canvas textures for dynamic content
+- Video textures for animated surfaces
+- Cube textures for environment mapping
 
 ---
 
-## Lighting Skills
+## Lighting & Shadow Skills
 
-### 10. Light Types and Configuration
+### 9. Light Types
 
-**Skill: Scene Lighting Design**
-- AmbientLight for global illumination
-- DirectionalLight for sun-like lighting
-- PointLight for omni-directional sources
-- SpotLight for focused beams
-- HemisphereLight for sky/ground lighting
-- RectAreaLight for area sources
+**Skill: Ambient and Hemisphere Lighting**
+- `AmbientLight` - Uniform scene illumination
+- `HemisphereLight` - Sky/ground color gradients
+- Configure intensity and color
+- Use as base lighting layer
 
-**Sub-skills:**
-- Light intensity and color tuning
+**Skill: Directional Lighting**
+- `DirectionalLight` - Parallel rays (sun-like)
 - Shadow casting configuration
-- Light helpers for debugging
-- HDR environment lighting
-- Light probes for indirect lighting
+- Shadow camera setup for optimal coverage
+- Light helpers for visualization
 
-### 11. Shadow Systems
+**Skill: Point and Spot Lights**
+- `PointLight` - Omnidirectional light source
+- `SpotLight` - Cone-shaped illumination
+- Distance falloff and decay
+- Shadow mapping for point/spot lights
 
-**Skill: Shadow Map Implementation**
-- Enable shadow casting and receiving
+**Sub-skills:**
+- Light intensity and color temperature
+- Multiple light source management
+- Performance optimization with light limits
+- Baked lighting alternatives
+
+### 10. Shadow System
+
+**Skill: Shadow Configuration**
+- Enable shadows on renderer, lights, and objects
 - Configure shadow map resolution
-- Adjust shadow camera frustum
+- Set shadow camera bounds
 - Optimize shadow bias and radius
 
 **Sub-skills:**
-- PCF (Percentage Closer Filtering) shadows
-- VSM (Variance Shadow Maps)
-- Cascaded shadow maps for large scenes
-- Contact shadows for detail
-- Shadow map debugging
+- Shadow type selection (Basic, PCF, VSM)
+- Shadow acne prevention
+- Performance vs. quality tradeoffs
+- Shadow baking for static scenes
 
 ---
 
-## Animation Skills
+## Animation & Interaction Skills
 
-### 12. Object Animation
+### 11. Animation System
 
-**Skill: Transform Animation**
-- Animate position, rotation, scale over time
-- Use requestAnimationFrame for smooth loops
-- Implement easing functions
-- Synchronize animations with delta time
+**Skill: Object Transformation Animation**
+- Manual animation in render loop
+- Tween libraries integration (GSAP, Tween.js)
+- Easing functions and timing control
+- Transform interpolation
 
-**Sub-skills:**
-- Quaternion-based rotation interpolation
-- Curve-based motion paths
-- Physics-based animation
-- Spring dynamics and damping
-
-### 13. Skeletal Animation
-
-**Skill: Rigged Character Animation**
-- Load and configure SkeletonHelper
-- Play animation clips from loaded models
+**Skill: Skeletal Animation**
+- `AnimationMixer` for complex animations
+- `AnimationClip` and `AnimationAction` management
 - Blend between animation states
-- Control animation speed and looping
+- Animation blending and crossfades
 
 **Sub-skills:**
-- Bone hierarchy management
-- Inverse kinematics (IK)
-- Animation mixer usage
-- Morph target blending
-- Animation retargeting
+- Timeline synchronization
+- Keyframe animation
+- Morph target animation
+- Physics-based animation
 
-### 14. Animation System
+### 12. User Interaction
 
-**Skill: Three.js Animation Framework**
-- AnimationMixer for managing clips
-- AnimationClip creation and editing
-- KeyframeTrack for property animation
-- AnimationAction for playback control
+**Skill: Camera Controls**
+- `OrbitControls` - Rotate around target
+- `TrackballControls` - Free rotation
+- `FlyControls` - First-person navigation
+- `PointerLockControls` - FPS-style control
 
-**Sub-skills:**
-- Time scaling and warping
-- Cross-fading between clips
-- Event triggering during playback
-- Custom interpolation modes
-
----
-
-## Texture & Asset Skills
-
-### 15. Texture Loading and Management
-
-**Skill: Texture Integration**
-- TextureLoader for image loading
-- Configure texture wrapping (repeat, clamp, mirror)
-- Set texture filtering (nearest, linear, mipmap)
-- Handle texture transformations (offset, scale, rotation)
-
-**Sub-skills:**
-- Loading manager for asset tracking
-- Cube texture loading for skyboxes
-- Compressed texture formats (KTX2, DDS)
-- Video textures for dynamic content
-- Canvas textures for procedural/dynamic updates
-- Texture atlas management
-
-### 16. Model Loading
-
-**Skill: 3D Model Import**
-- GLTFLoader for modern PBR models
-- OBJLoader and MTLLoader for legacy formats
-- FBXLoader for complex scenes
-- ColladaLoader (DAE) support
-- DRACOLoader for compressed geometry
-
-**Sub-skills:**
-- Model scale and orientation correction
-- Material override and customization
-- Animation extraction from models
-- LOD (Level of Detail) model swapping
-- Model traversal and modification
-
-### 17. HDR and Environment Maps
-
-**Skill: Image-Based Lighting**
-- Load HDR environment maps (RGBE, EXR)
-- Apply environment maps to scenes
-- Generate prefiltered mipmaps
-- Use PMREMGenerator for IBL
-
-**Sub-skills:**
-- Equirectangular to cubemap conversion
-- Environment map intensity control
-- Background vs environment separation
-- Custom BRDF lookup tables
-
----
-
-## Interaction Skills
-
-### 18. Raycasting and Object Picking
-
-**Skill: 3D Object Interaction**
-- Implement mouse/touch raycasting
-- Detect object intersections
-- Calculate intersection points and faces
-- Handle multiple object selection
-
-**Sub-skills:**
-- Screen-to-world coordinate conversion
-- Recursive raycasting through hierarchies
-- Custom intersection algorithms
-- Performance optimization for large scenes
-- Bounding volume hierarchies (BVH)
-
-### 19. Camera Controls
-
-**Skill: User Camera Navigation**
-- OrbitControls for object inspection
-- FlyControls for free movement
-- FirstPersonControls for FPS navigation
-- TrackballControls for unconstrained rotation
-- TransformControls for object manipulation
-
-**Sub-skills:**
+**Skill: Object Interaction**
+- Raycasting for mouse picking
+- Hover and click detection
+- Drag and drop in 3D space
 - Touch gesture support
-- Camera constraint systems
-- Smooth camera transitions
-- Auto-rotation and damping
-- Collision detection for camera
+
+**Sub-skills:**
+- Ray-object intersection testing
+- Screen-to-world coordinate conversion
+- Multi-touch handling
+- VR controller interaction
 
 ---
 
-## Post-Processing Skills
+## Shader Programming Skills
 
-### 20. Effect Composer Setup
+### 13. GLSL Fundamentals
 
-**Skill: Post-Processing Pipeline**
-- Configure EffectComposer
-- Add RenderPass as base layer
-- Chain multiple passes sequentially
-- Output final result to screen
+**Skill: Custom Vertex Shaders**
+- Vertex position transformation
+- Normal and UV passing to fragment shader
+- Vertex displacement techniques
+- Custom attribute handling
 
-**Sub-skills:**
-- Render target management
-- Multi-pass rendering strategies
-- Alpha channel preservation
-- Resolution scaling for performance
-
-### 21. Built-in Effects
-
-**Skill: Standard Post-Processing Effects**
-- Bloom for glow effects
-- Depth of field (DOF) for focus
-- SSAO (Screen Space Ambient Occlusion)
-- Motion blur
-- Film grain and vignette
-- Color correction (LUT, brightness, contrast)
-- Glitch effects
-- Outline and edge detection
+**Skill: Custom Fragment Shaders**
+- Color calculation and output
+- Texture sampling
+- Lighting calculations
+- Procedural patterns and noise
 
 **Sub-skills:**
-- Effect parameter tuning
-- Performance optimization
-- Selective object effects
-- Custom shader passes
-- Temporal antialiasing (TAA)
+- Uniform passing from JavaScript
+- Varying interpolation
+- Built-in Three.js shader chunks
+- ShaderMaterial configuration
+
+### 14. Advanced Shader Techniques
+
+**Skill: Procedural Textures**
+- Noise functions (Perlin, Simplex, Worley)
+- Mathematical patterns
+- Fractal generation
+- Domain warping
+
+**Skill: Post-Processing Shaders**
+- Bloom and glow effects
+- Color grading and correction
+- Depth of field
+- Motion blur and chromatic aberration
 
 ---
 
-## Performance Skills
+## WebGPU Skills (Modern API)
 
-### 22. Optimization Techniques
+### 15. WebGPU Renderer
 
-**Skill: Performance Profiling**
-- Use Stats.js for FPS monitoring
-- Browser DevTools performance analysis
-- Identify rendering bottlenecks
-- Measure draw calls and triangles
-
-**Sub-skills:**
-- Geometry instancing for repeated objects
-- Level of Detail (LOD) implementation
-- Frustum culling optimization
-- Occlusion culling strategies
-- Texture compression and atlasing
-- Shader complexity reduction
-- GPU instancing with InstancedMesh
-
-### 23. Memory Management
-
-**Skill: Resource Lifecycle**
-- Dispose geometries, materials, textures
-- Remove objects from scene graph
-- Clear render targets
-- Handle WebGL context loss
+**Skill: WebGPU Configuration**
+- Initialize `WebGPURenderer`
+- Feature detection and fallback
+- Render pipeline optimization
+- Compute shader integration
 
 **Sub-skills:**
-- Object pooling for reusable objects
+- GPU-driven rendering
+- Indirect drawing
+- Storage buffers
+- Advanced texture formats
+
+---
+
+## Performance Optimization Skills
+
+### 16. Rendering Optimization
+
+**Skill: Draw Call Reduction**
+- Geometry merging
+- Instanced rendering with `InstancedMesh`
+- Level of Detail (LOD) systems
+- Frustum culling
+
+**Skill: Memory Management**
+- Geometry and texture disposal
+- Resource pooling
+- Texture atlas generation
+- Compressed texture formats
+
+**Sub-skills:**
+- GPU memory monitoring
 - Lazy loading strategies
-- Texture streaming and pagination
-- Memory leak detection and prevention
+- Asset streaming
+- Progressive enhancement
+
+### 17. Profiling and Debugging
+
+**Skill: Performance Analysis**
+- Stats.js integration for FPS monitoring
+- Chrome DevTools GPU profiling
+- Draw call counting
+- Bottleneck identification
+
+**Sub-skills:**
+- Frame time analysis
+- GPU vs. CPU bound detection
+- Memory leak detection
+- Shader compilation monitoring
 
 ---
 
-## Advanced Rendering Skills
+## Advanced Techniques
 
-### 24. Custom Render Pipelines
+### 18. Post-Processing
 
-**Skill: Multi-Pass Rendering**
-- Render to texture (RTT) techniques
-- Deferred rendering setup
-- Multiple render targets
-- Ping-pong buffer techniques
+**Skill: EffectComposer Usage**
+- Multi-pass rendering setup
+- Effect pass chaining
+- Render target management
+- Custom pass creation
 
 **Sub-skills:**
-- G-buffer construction
-- Light accumulation passes
-- Screen-space reflections (SSR)
-- Volume rendering
-- Procedural generation in shaders
+- Bloom, blur, and glow effects
+- SSAO (Screen-Space Ambient Occlusion)
+- Outline and edge detection
+- Film grain and vignette
 
-### 25. VR and AR Integration
+### 19. Physics Integration
 
-**Skill: Immersive Experiences**
-- WebXR integration
-- VR camera rig setup
+**Skill: Physics Engine Connection**
+- Cannon.js or Ammo.js integration
+- Rigid body simulation
+- Collision detection
+- Constraint systems
+
+**Sub-skills:**
+- Physics-driven animation
+- Ragdoll physics
+- Soft body simulation
+- Fluid simulation
+
+### 20. VR/XR Development
+
+**Skill: WebXR Integration**
+- VR session initialization
 - Controller input handling
-- AR hit testing and anchors
+- Room-scale tracking
+- Hand tracking support
 
 **Sub-skills:**
 - Stereoscopic rendering
-- Gaze-based interaction
-- Hand tracking
-- Spatial audio integration
-- Performance optimization for mobile VR
+- Performance optimization for VR (90+ FPS)
+- Teleportation and locomotion
+- UI in VR space
 
 ---
 
-## Particle & Physics Skills
+## Learning Resources
 
-### 26. Particle Systems
+### Official
+- [Three.js Manual](https://threejs.org/manual/)
+- [Three.js Examples](https://threejs.org/examples/)
+- [API Documentation](https://threejs.org/docs/)
 
-**Skill: Point Cloud and Particles**
-- Points/PointsMaterial for particle rendering
-- Sprite-based particles
-- GPU particle systems
-- Particle emitters and lifetime management
+### Courses
+- Three.js Journey by Bruno Simon
+- Three.js Fundamentals
+- Udemy Three.js courses
 
-**Sub-skills:**
-- Custom particle shaders
-- Texture atlases for particle sprites
-- Particle physics simulation
-- Instanced particle rendering
-- Billboard orientation
+### Community
+- [Three.js Forum](https://discourse.threejs.org/)
+- [Three.js Discord](https://discord.gg/56GBJwAnUS)
+- [r/threejs](https://reddit.com/r/threejs)
 
-### 27. Physics Integration
-
-**Skill: Physics Simulation**
-- Integrate Cannon.js or Ammo.js
-- Synchronize Three.js objects with physics bodies
-- Implement collision detection
-- Apply forces and constraints
-
-**Sub-skills:**
-- Rigid body dynamics
-- Soft body simulation
-- Cloth physics
-- Ragdoll systems
-- Constraint solvers
+### Books
+- "Learning Three.js" by Jos Dirksen
+- "Three.js Cookbook"
 
 ---
 
-## Utility Skills
+## Integration Patterns
 
-### 28. Scene Management
+### With React
+- React Three Fiber (R3F) - Declarative Three.js
+- Component-based scene composition
+- React hooks for animation
+- Drei helpers library
 
-**Skill: Scene Organization**
-- Layer-based rendering
-- Object naming and tagging
-- Scene serialization/deserialization
-- Scene cloning and instancing
+### With Vue
+- TresJS - Vue Three.js integration
+- Composition API patterns
+- Reactive 3D scenes
 
-**Sub-skills:**
-- Object3D userData for custom properties
-- Scene graph searching and filtering
-- Dynamic object addition/removal
-- Scene state management
-
-### 29. Math and Utilities
-
-**Skill: 3D Mathematics**
-- Vector3 operations
-- Matrix4 transformations
-- Quaternion rotations
-- Euler angle conversions
-- Ray, Plane, Box3, Sphere utilities
-
-**Sub-skills:**
-- Coordinate system conversions
-- Interpolation (lerp, slerp)
-- Bounding box calculations
-- Frustum geometry
-- Projection and unprojection
-
-### 30. Debugging and Visualization
-
-**Skill: Development Tools**
-- AxesHelper for coordinate visualization
-- GridHelper for spatial reference
-- CameraHelper for camera frustum
-- DirectionalLightHelper, SpotLightHelper
-- SkeletonHelper for bones
-- BoxHelper, Box3Helper for bounds
-
-**Sub-skills:**
-- Custom helper creation
-- Performance monitoring overlays
-- Shader debugging techniques
-- Console logging for scene inspection
+### With Vanilla JS
+- Direct Three.js usage
+- Custom render loops
+- State management patterns
+- Module bundling (Vite, Webpack)
 
 ---
 
-## Integration Skills
+## Best Practices
 
-### 31. Framework Integration
-
-**Skill: Three.js in Modern Frameworks**
-- React Three Fiber (R3F) integration
-- Vue.js integration
-- Svelte integration
-- Vanilla JS best practices
-
-**Sub-skills:**
-- Component lifecycle management
-- State synchronization
-- Event handling in frameworks
-- SSR considerations
-- Hot module replacement
-
-### 32. Build and Deployment
-
-**Skill: Production Optimization**
-- Tree-shaking for minimal bundle size
-- Code splitting strategies
-- Asset optimization and CDN usage
-- Progressive loading
-
-**Sub-skills:**
-- Webpack/Vite configuration
-- Dynamic imports for large scenes
-- Service worker caching
-- Performance budgeting
+1. **Dispose Resources:** Always dispose geometries, materials, and textures when done
+2. **Use BufferGeometry:** More efficient than legacy Geometry
+3. **Limit Draw Calls:** Merge geometries, use instancing
+4. **Optimize Shadows:** Lower resolution, limit shadow-casting objects
+5. **Texture Compression:** Use compressed formats (KTX2, Basis)
+6. **Responsive Design:** Handle window resizing properly
+7. **Progressive Enhancement:** Start simple, add effects gradually
+8. **Test Performance:** Profile on target devices early
+9. **Use LOD:** Reduce detail for distant objects
+10. **Leverage CDNs:** Use CDN versions with tree-shaking for production
 
 ---
 
-## Creative Coding Skills
-
-### 33. Generative Art
-
-**Skill: Procedural Content Generation**
-- Noise-based geometry modification
-- Fractal and recursive structures
-- Algorithmic pattern generation
-- Particle-based artworks
-
-**Sub-skills:**
-- Simplex/Perlin noise implementation
-- L-systems for organic forms
-- Cellular automata visualization
-- Flow field particle systems
-
-### 34. Audio Visualization
-
-**Skill: Music-Reactive Graphics**
-- Web Audio API integration
-- FFT analysis for frequency data
-- Waveform visualization
-- Beat detection and sync
-
-**Sub-skills:**
-- Real-time audio processing
-- Frequency-based material modulation
-- Audio-driven animations
-- 3D spectrum analyzers
-
----
-
-## Reference Resources
-
-**Learning Resources:**
-- Three.js Journey: https://threejs-journey.com/
-- Three.js Manual: https://threejs.org/manual/
-- Discover Three.js: https://discoverthreejs.com/
-
-**Community:**
-- Three.js Forum: https://discourse.threejs.org/
-- GitHub: https://github.com/mrdoob/three.js
-- Discord: Official Three.js community
-
-**Key Statistics:**
-- 2.7M weekly NPM downloads (2026)
-- 270x more popular than competitors
-- Active development since 2010
-- 100k+ stars on GitHub
+**Version Reference:** Three.js r170+ (2025-2026)  
+**Last Updated:** February 2026

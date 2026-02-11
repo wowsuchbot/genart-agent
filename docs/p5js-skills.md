@@ -58,42 +58,47 @@ p5.js is a JavaScript library for creative coding that makes coding accessible f
 **Sub-skills:**
 - Shape modes: POINTS, LINES, TRIANGLES, TRIANGLE_FAN, QUADS
 - Contour creation with `beginContour()` and `endContour()`
+- Curve tightness control
 - Bezier and curve tangent calculations
-- Custom shape libraries and templates
+
+**Skill: Curve Drawing**
+- `bezier()` for cubic Bezier curves
+- `curve()` for Catmull-Rom splines
+- Control point manipulation
+- `bezierPoint()` and `curvePoint()` for point calculation along curves
 
 ---
 
 ## Styling Skills
 
-### 4. Color and Fill
+### 4. Color Management
 
-**Skill: Color Management**
-- `fill(r, g, b, [a])` for shape interiors
-- `stroke(r, g, b, [a])` for outlines
-- `noFill()` and `noStroke()`
-- `background(color)` for canvas clearing
-- Color modes: RGB, HSB with `colorMode()`
+**Skill: Color Creation and Application**
+- `fill()` for shape fill color
+- `stroke()` for outline color
+- `background()` for canvas background
+- `color()` for color object creation
 
 **Sub-skills:**
-- Alpha transparency control
-- Color object creation with `color()`
+- RGB, HSB, HSL color modes with `colorMode()`
+- Alpha transparency
+- `noFill()` and `noStroke()` for style removal
 - Color interpolation with `lerpColor()`
-- Palette generation and management
-- Hex and named color support
-- Hue, saturation, brightness manipulation
+- Color extraction with `red()`, `green()`, `blue()`, `hue()`, `saturation()`, `brightness()`
 
-### 5. Stroke and Style Properties
+**Skill: Advanced Color Techniques**
+- Gradient creation with vertex colors
+- Color palette generation
+- Complementary and analogous color schemes
+- Color blending modes with `blendMode()`
+
+### 5. Stroke and Fill Properties
 
 **Skill: Line Styling**
-- `strokeWeight(pixels)` for line thickness
-- `strokeCap(mode)` - SQUARE, PROJECT, ROUND
-- `strokeJoin(mode)` - MITER, BEVEL, ROUND
-- Dashed lines patterns
-
-**Sub-skills:**
-- Gradient simulation techniques
-- Pattern fills with custom functions
-- Texture-based fills
+- `strokeWeight()` for line thickness
+- `strokeCap()` for line endings (ROUND, SQUARE, PROJECT)
+- `strokeJoin()` for corner styles (MITER, BEVEL, ROUND)
+- Dashed lines (not built-in, requires custom implementation)
 
 ---
 
@@ -101,632 +106,542 @@ p5.js is a JavaScript library for creative coding that makes coding accessible f
 
 ### 6. Text Rendering
 
-**Skill: Text Display**
-- `text(str, x, y, [w, h])` for rendering
-- `textSize(pixels)` for font size
-- `textFont(font)` for font selection
-- `loadFont(path)` for custom fonts
-- `textAlign(horizAlign, [vertAlign])`
+**Skill: Basic Text Drawing**
+- `text(str, x, y)` for text display
+- `textSize()` for font size
+- `textFont()` for font selection
+- `loadFont()` for custom font loading
 
 **Sub-skills:**
-- Text metrics: `textWidth()`, `textAscent()`, `textDescent()`
+- Text alignment with `textAlign()` (LEFT, CENTER, RIGHT, TOP, BOTTOM)
 - Text leading (line spacing) with `textLeading()`
-- Text bounds calculation
+- Text styling with `textStyle()` (NORMAL, ITALIC, BOLD)
+- Text bounds calculation with `textWidth()` and `textAscent()/textDescent()`
+- Multi-line text handling
+
+**Skill: Advanced Typography**
 - Dynamic text sizing and wrapping
-- Loading web fonts and Google Fonts
-- Unicode and emoji support
-
-### 7. Advanced Typography
-
-**Skill: Text Manipulation**
-- Character-by-character access
-- Text along paths
-- Kinetic typography
-- Text deformation and effects
-
-**Sub-skills:**
-- Font outline extraction
-- Text as particles or shapes
-- 3D text in WebGL mode
-- Responsive text scaling
-- Text animation timing
+- Text on paths
+- Animated typography
+- Text as texture in WebGL mode
 
 ---
 
 ## Image & Media Skills
 
-### 8. Image Loading and Display
+### 7. Image Manipulation
 
-**Skill: Image Integration**
-- `loadImage(path)` in `preload()`
-- `image(img, x, y, [w, h])` for display
-- `tint(color, [alpha])` for color overlay
+**Skill: Image Loading and Display**
+- `loadImage()` for image loading (in preload())
+- `image(img, x, y, w, h)` for display
 - `imageMode()` for positioning
+- Image caching and optimization
+
+**Skill: Pixel Manipulation**
+- `loadPixels()` and `updatePixels()` for pixel array access
+- `get()` and `set()` for individual pixel operations
+- `pixels[]` array manipulation
+- Image filtering with `filter()` (BLUR, GRAY, INVERT, THRESHOLD, etc.)
 
 **Sub-skills:**
-- Image resizing and scaling
-- Image cropping with additional parameters
-- Animated GIF support
-- Image blending modes
-- Copy and paste regions with `copy()`
+- Custom image filters
+- Pixel-level effects (glitch, mosaic, pixelation)
+- Color mapping and remapping
+- Image blending and compositing
 
-### 9. Pixel Manipulation
+### 8. Video Integration
 
-**Skill: Low-Level Image Processing**
-- `loadPixels()` and `updatePixels()`
-- Direct pixel array access
-- `get(x, y)` for pixel color reading
-- `set(x, y, color)` for pixel writing
-
-**Sub-skills:**
-- Image filters: BLUR, GRAY, THRESHOLD, INVERT, POSTERIZE
-- Custom filter algorithms
-- Pixel sorting and glitch effects
-- Convolution kernels
-- Real-time video pixel manipulation
-- Edge detection and computer vision
-
-### 10. Video and Camera
-
-**Skill: Video Integration**
-- `createCapture(VIDEO)` for webcam
-- `createVideo(src)` for video files
-- Video playback control: play, pause, loop
-- Video pixel access for effects
-
-**Sub-skills:**
-- Multiple camera source selection
-- Video speed and time control
+**Skill: Video Playback**
+- `createVideo()` for video element creation
+- `createCapture()` for webcam access
+- Video control (play, pause, loop, speed)
 - Video as texture in WebGL
-- Frame differencing for motion detection
-- Green screen / chroma key effects
+
+**Sub-skills:**
+- Frame-by-frame video analysis
+- Real-time video effects
+- Video export (with external libraries)
+- Multiple video sources
 
 ---
 
-## Animation Skills
+## Animation & Transformation Skills
 
-### 11. Motion and Timing
+### 9. Coordinate Transformations
 
-**Skill: Animation Fundamentals**
-- Use `frameCount` for time-based motion
-- `millis()` for elapsed time
-- Velocity and acceleration patterns
-- Easing functions (linear, quadratic, sine)
-
-**Sub-skills:**
-- Delta time for frame-rate independence
-- Animation looping and cycles
-- State machine animation
-- Timeline-based sequencing
-- Tweening libraries integration
-
-### 12. Transformation System
-
-**Skill: Coordinate Transformations**
+**Skill: 2D Transformations**
 - `translate(x, y)` for position offset
 - `rotate(angle)` for rotation
-- `scale(x, [y])` for sizing
-- `push()` and `pop()` for transformation stacks
+- `scale(x, y)` for scaling
+- `shearX()` and `shearY()` for skewing
 
 **Sub-skills:**
-- Rotation around custom pivot points
-- Nested transformations for hierarchies
-- Matrix transformations with `applyMatrix()`
-- Isometric and axonometric projections
-- Transformation debugging techniques
+- `push()` and `pop()` for transformation state management
+- Transformation matrix understanding
+- Nested transformations
+- `applyMatrix()` for custom transformations
+- `resetMatrix()` for matrix reset
+
+### 10. Animation Techniques
+
+**Skill: Frame-Based Animation**
+- `frameCount` for frame tracking
+- `deltaTime` for time-based animation
+- Easing functions (linear, quadratic, cubic, etc.)
+- Animation loops and cycles
+
+**Sub-skills:**
+- Oscillation with `sin()` and `cos()`
+- Smooth interpolation with `lerp()`
+- Noise-based animation with `noise()`
+- Spring physics simulation
+- Particle systems
 
 ---
 
 ## Interaction Skills
 
-### 13. Mouse and Touch Input
+### 11. Mouse Interaction
 
-**Skill: User Input Handling**
+**Skill: Mouse Input Handling**
 - `mouseX` and `mouseY` for position
 - `pmouseX` and `pmouseY` for previous position
-- `mouseIsPressed` for state checking
 - `mousePressed()`, `mouseReleased()`, `mouseClicked()` callbacks
-- `mouseDragged()` and `mouseMoved()` for motion
+- `mouseDragged()` and `mouseMoved()` for movement
+- `mouseWheel()` for scroll events
 
 **Sub-skills:**
-- Mouse button detection with `mouseButton`
-- Touch event handling: `touchStarted()`, `touchMoved()`, `touchEnded()`
-- Multi-touch with `touches[]` array
-- Drawing applications (paint, sketch)
-- Gesture recognition
+- Drawing applications
+- Hover detection
+- Drag and drop
 - Mouse velocity calculation
+- Click vs. drag differentiation
 
-### 14. Keyboard Input
+### 12. Keyboard Interaction
 
-**Skill: Keyboard Interaction**
-- `keyPressed()` and `keyReleased()` callbacks
-- `key` for character value
-- `keyCode` for special keys
-- `keyIsPressed` for state
+**Skill: Keyboard Input**
+- `keyPressed()`, `keyReleased()`, `keyTyped()` callbacks
+- `key` and `keyCode` variables
+- Modifier key detection (shift, ctrl, alt)
+- Text input handling
 
 **Sub-skills:**
-- Modifier key detection (shift, ctrl, alt)
-- Key combination handling
-- Text input capture
-- Keyboard-controlled animations
-- Accessibility considerations
+- Keyboard-controlled animation
+- Text input fields
+- Keyboard shortcuts
+- Game controls
+
+### 13. Touch Interaction
+
+**Skill: Touch Event Handling**
+- `touchStarted()`, `touchMoved()`, `touchEnded()` callbacks
+- `touches[]` array for multi-touch
+- Touch vs. mouse input abstraction
+- Gesture recognition (pinch, swipe, rotate)
 
 ---
 
 ## Mathematical Skills
 
-### 15. Math Functions and Utilities
+### 14. Vector Mathematics
 
-**Skill: Mathematical Operations**
-- `map(value, start1, stop1, start2, stop2)` for range conversion
-- `constrain(n, low, high)` for clamping
-- `lerp(start, stop, amt)` for interpolation
-- `dist(x1, y1, x2, y2)` for distance
-- `norm(value, start, stop)` for normalization
-
-**Sub-skills:**
-- Trigonometric functions: `sin()`, `cos()`, `tan()`, `atan2()`
-- Angle conversion: `radians()`, `degrees()`
-- Random number generation: `random()`, `randomGaussian()`
-- Noise generation: `noise()` (Perlin noise)
-- Vector mathematics with `p5.Vector`
-
-### 16. Noise and Randomness
-
-**Skill: Procedural Generation**
-- `random([min], [max])` for uniform distribution
-- `randomSeed(seed)` for reproducible randomness
-- `noise(x, [y], [z])` for smooth noise
-- `noiseSeed(seed)` for reproducible noise
-- `noiseDetail(lod, falloff)` for noise customization
+**Skill: p5.Vector Usage**
+- Create vectors with `createVector(x, y, z)`
+- Vector arithmetic (add, sub, mult, div)
+- Vector operations (mag, normalize, limit, setMag)
+- Dot product and cross product
 
 **Sub-skills:**
-- 1D, 2D, 3D noise applications
+- Physics simulation with vectors
+- Velocity and acceleration
+- Vector field visualization
+- Steering behaviors
+
+### 15. Noise and Randomness
+
+**Skill: Random Number Generation**
+- `random()` for uniform distribution
+- `randomGaussian()` for normal distribution
+- `randomSeed()` for reproducible randomness
+- `noise()` for Perlin noise
+
+**Sub-skills:**
 - Noise-based terrain generation
-- Organic motion with noise
-- Random distribution strategies
-- Probability-weighted selection
+- `noiseSeed()` for reproducible noise
+- `noiseDetail()` for octave control
+- Flow fields with noise
+- Random walk algorithms
+
+### 16. Mathematical Utilities
+
+**Skill: Math Helper Functions**
+- `map()` for value remapping
+- `constrain()` for value clamping
+- `lerp()` for linear interpolation
+- `dist()` for distance calculation
+- `abs()`, `sq()`, `sqrt()`, `pow()`, etc.
+
+**Sub-skills:**
+- Trigonometric functions (`sin()`, `cos()`, `tan()`, `atan2()`)
+- Angle conversion (`radians()`, `degrees()`)
+- Normalization and scaling
+- Modulo operations for wrapping
 
 ---
 
-## Vector Mathematics Skills
+## Object-Oriented Patterns
 
-### 17. p5.Vector Fundamentals
+### 17. Class-Based Design
 
-**Skill: Vector Operations**
-- `createVector(x, y, [z])` for creation
-- Vector arithmetic: `add()`, `sub()`, `mult()`, `div()`
-- `mag()` for magnitude, `normalize()` for unit vectors
-- `dot()` and `cross()` products
-- `heading()` for angle extraction
-
-**Sub-skills:**
-- Vector distance with `dist()`
-- Vector interpolation with `lerp()`
-- Vector rotation and angle calculation
-- Velocity and acceleration vectors
-- Force accumulation patterns
-
-### 18. Physics Simulation
-
-**Skill: Motion Physics**
-- Implement velocity and acceleration
-- Apply forces (gravity, friction, drag)
-- Collision detection and response
-- Particle systems and emitters
+**Skill: Custom Classes**
+- ES6 class syntax in p5.js
+- Constructor and methods
+- Object arrays for multiple instances
+- Encapsulation of behavior
 
 **Sub-skills:**
-- Spring forces and oscillation
-- Gravitational attraction
-- Steering behaviors (seek, flee, arrive)
-- Flocking and boids algorithms
-- Verlet integration
-- Constraint systems
-
----
-
-## Object-Oriented Skills
-
-### 19. Class-Based Design
-
-**Skill: OOP in p5.js**
-- Create custom classes for entities
-- Constructor patterns
-- Method encapsulation
-- Array-based object management
-
-**Sub-skills:**
-- Inheritance and polymorphism
+- Particle class design
 - Object pooling for performance
-- Factory patterns
+- Inheritance and polymorphism
+- Static methods and properties
+
+**Skill: Design Patterns**
+- Factory pattern for object creation
+- Observer pattern for events
+- State machines for animation states
 - Component-based architecture
-- State management in objects
-
-### 20. Particle Systems
-
-**Skill: Particle System Design**
-- Particle class creation
-- Emitter systems
-- Particle lifecycle management
-- Force application to particles
-
-**Sub-skills:**
-- Different particle behaviors
-- Particle attractors and repellers
-- Trail and fade effects
-- Particle collision systems
-- GPU-accelerated particles (WebGL)
 
 ---
 
 ## 3D Graphics Skills (WebGL Mode)
 
-### 21. 3D Primitives and Modeling
+### 18. 3D Primitives and Camera
 
 **Skill: 3D Shape Creation**
-- `box(size)`, `sphere(radius)`, `cylinder(radius, height)`
-- `cone()`, `torus()`, `plane()`
-- Custom 3D geometry with vertices
-- Model loading with `loadModel()`
+- `box()`, `sphere()`, `cylinder()`, `cone()`, `torus()`
+- `plane()` for flat surfaces
+- Custom 3D shapes with `beginShape(TRIANGLES)`
+- 3D transformations (translate, rotate, scale in 3D)
+
+**Skill: 3D Camera Control**
+- `camera()` for custom camera positioning
+- `perspective()` and `ortho()` for projection
+- `orbitControl()` for interactive camera
+- Camera movement and animation
 
 **Sub-skills:**
-- 3D transformation stacking
-- Camera control: `camera()`, `perspective()`, `ortho()`
-- `orbitControl()` for mouse camera
-- Normal and texture coordinate specification
-- OBJ and STL file loading
+- 3D coordinate system understanding
+- Camera frustum configuration
+- First-person and third-person views
+- Camera easing and smooth movement
 
-### 22. 3D Lighting and Materials
+### 19. Lighting and Materials
 
-**Skill: 3D Scene Lighting**
-- `ambientLight(r, g, b)` for global illumination
-- `directionalLight(r, g, b, x, y, z)` for sun
-- `pointLight(r, g, b, x, y, z)` for omni lights
-- `spotLight()` for focused beams
-- Material properties: `ambientMaterial()`, `specularMaterial()`, `shininess()`
+**Skill: 3D Lighting**
+- `ambientLight()` for overall illumination
+- `directionalLight()` for sun-like lighting
+- `pointLight()` for local light sources
+- `spotLight()` for focused illumination
 
-**Sub-skills:**
-- Normal material visualization
-- Texture mapping in 3D
-- Custom shaders in WebGL mode
-- Light positioning strategies
-- Multiple light source management
-
-### 23. 3D Textures and Shaders
-
-**Skill: Advanced 3D Rendering**
-- `texture(img)` for surface textures
-- Normal maps for detail
-- Custom GLSL shaders with `createShader()`
-- Shader uniforms and attributes
+**Skill: Material Properties**
+- `ambientMaterial()` for ambient reflection
+- `specularMaterial()` for shiny surfaces
+- `normalMaterial()` for debugging normals
+- `texture()` for surface textures
 
 **Sub-skills:**
-- UV mapping techniques
-- Shader-based effects (distortion, displacement)
-- Post-processing in 3D
-- Framebuffer objects
-- Render to texture techniques
+- `shininess()` for specular control
+- Multiple light sources
+- Light color and intensity
+- Material-light interaction
+
+### 20. 3D Model Loading
+
+**Skill: External Model Import**
+- `loadModel()` for OBJ/STL files
+- `model()` for display
+- Model transformation and animation
+- Texture mapping on imported models
 
 ---
 
-## Audio Skills
+## Audio Skills (p5.sound Library)
 
-### 24. Sound Playback
+### 21. Audio Playback
 
-**Skill: p5.sound Library**
-- `loadSound(path)` in preload
-- `play()`, `pause()`, `stop()` control
-- `loop()` and `setLoop()` for repetition
+**Skill: Sound File Management**
+- `loadSound()` for audio loading
+- `play()`, `pause()`, `stop()` for control
+- `loop()` for continuous playback
 - Volume and pan control
-- Playback rate manipulation
 
 **Sub-skills:**
-- Sound file format support (MP3, WAV, OGG)
-- Multiple simultaneous sounds
-- Sound callbacks and events
+- Playback rate manipulation
+- `jump()` for seeking
 - Audio sprite techniques
-- Spatial audio (3D sound)
+- Multiple sound playback
 
-### 25. Audio Analysis
+### 22. Audio Analysis
 
-**Skill: Sound Visualization**
-- `p5.Amplitude` for volume analysis
-- `p5.FFT` for frequency analysis
-- Waveform visualization
-- Spectrum display
+**Skill: Audio Visualization**
+- `Amplitude` for volume analysis
+- `FFT` for frequency analysis
+- `Waveform` for time-domain visualization
 - Beat detection
 
 **Sub-skills:**
-- Frequency band isolation
-- Real-time audio reactive visuals
-- Amplitude envelope following
-- Peak detection algorithms
-- Audio-driven animation parameters
+- Spectrum visualization
+- Audio-reactive graphics
+- Peak detection
+- Frequency band analysis
 
-### 26. Sound Synthesis
+### 23. Audio Synthesis
 
-**Skill: Generative Audio**
-- `p5.Oscillator` for tone generation
-- Waveform types: sine, triangle, square, sawtooth
-- `p5.Envelope` for ADSR
-- `p5.Filter` for frequency shaping
-- `p5.Reverb` and `p5.Delay` effects
+**Skill: Oscillator Synthesis**
+- `Oscillator` for tone generation
+- Waveform types (sine, triangle, square, sawtooth)
+- Frequency and amplitude control
+- Envelope application
 
-**Sub-skills:**
-- Additive synthesis techniques
-- FM (Frequency Modulation) synthesis
-- Note sequencing and scheduling
-- Polyphonic synthesis
-- Audio effect chaining
+**Skill: Advanced Synthesis**
+- `PolySynth` for polyphonic synthesis
+- `Noise` generators (white, pink, brown)
+- `Envelope` for ADSR control
+- Audio effects (reverb, delay, filter)
 
 ---
 
-## Data & File Skills
+## Data & File Operations
 
-### 27. Loading External Data
+### 24. Data Loading
 
-**Skill: Data Import**
-- `loadJSON(path)` for JSON data
-- `loadStrings(path)` for text files
-- `loadTable(path)` for CSV/TSV
-- `loadXML(path)` for XML data
-- Data parsing in `preload()`
+**Skill: External Data Import**
+- `loadJSON()` for JSON data
+- `loadStrings()` for text files
+- `loadTable()` for CSV data
+- `loadXML()` for XML data
 
 **Sub-skills:**
-- API data fetching
-- Error handling for failed loads
-- Asynchronous data with callbacks
+- Data parsing and processing
+- API integration with `loadJSON(url)`
+- Data visualization
 - Real-time data updates
-- Data caching strategies
 
-### 28. Data Visualization
+### 25. Data Export
 
-**Skill: Information Graphics**
-- Chart creation (bar, line, scatter)
-- Data mapping to visual properties
-- Statistical visualization
-- Network and graph visualization
-
-**Sub-skills:**
-- Scale and axis generation
-- Legend and label creation
-- Interactive data exploration
-- Animated data transitions
-- Responsive visualizations
-- Geographic data (maps)
-
-### 29. Saving and Export
-
-**Skill: Output Generation**
-- `save(filename)` for canvas download
-- `saveCanvas(filename, extension)` for PNG/JPG
-- `saveFrames()` for animation export
-- `saveJSON()`, `saveStrings()`, `saveTable()`
+**Skill: Saving Output**
+- `save()` and `saveCanvas()` for image export
+- `saveFrames()` for animation frames
+- `saveJSON()`, `saveTable()` for data export
+- `saveStrings()` for text export
 
 **Sub-skills:**
-- High-resolution export
-- SVG export for vector graphics
-- PDF generation for print
-- Batch frame export for video
-- Data export formats
+- High-resolution image export
+- Animation rendering
+- Data logging
+- Custom file formats
 
 ---
 
-## Advanced Programming Skills
+## Performance Optimization
 
-### 30. Custom Libraries and Addons
+### 26. Rendering Optimization
 
-**Skill: Library Integration**
-- Include external p5.js libraries
-- p5.sound for audio
-- p5.dom for HTML elements (legacy)
-- Community libraries (ml5.js, matter.js, toxiclibs)
-
-**Sub-skills:**
-- Library compatibility checking
-- Version management
-- Creating custom p5.js libraries
-- Contributing to p5.js ecosystem
-
-### 31. Machine Learning Integration
-
-**Skill: ml5.js Integration**
-- Image classification
-- Pose detection (PoseNet)
-- Object detection
-- Style transfer
-- Hand tracking
+**Skill: Performance Techniques**
+- `noSmooth()` to disable anti-aliasing
+- Shape batching with `beginShape()`/`endShape()`
+- Reduce `draw()` loop complexity
+- Conditional rendering based on visibility
 
 **Sub-skills:**
-- Pre-trained model usage
-- Real-time prediction
-- Training custom models
-- Data collection for ML
-- Performance optimization for ML
+- Object pooling
+- Spatial partitioning (quadtree, grid)
+- Level of detail (LOD)
+- Off-screen rendering with `createGraphics()`
 
-### 32. DOM Manipulation
+### 27. Memory Management
 
-**Skill: HTML Element Creation**
-- `createDiv()`, `createP()`, `createButton()`
-- `createSlider()`, `createInput()` for controls
-- Element positioning and styling
-- CSS class and ID management
-
-**Sub-skills:**
-- Event listeners on DOM elements
-- Dynamic UI generation
-- Form integration
-- Responsive layout with p5.js
-- Accessibility attributes
+**Skill: Resource Management**
+- Remove unused objects from arrays
+- `remove()` for p5.Element cleanup
+- Image and sound disposal
+- Clear buffers when not needed
 
 ---
 
-## Performance Skills
+## Generative Art Techniques
 
-### 33. Optimization Techniques
+### 28. Algorithmic Design
 
-**Skill: Performance Tuning**
-- Minimize calculations in draw loop
-- Object pooling and reuse
-- Spatial data structures (quadtree, grid)
-- Level of detail (LOD) strategies
-- Profiling with browser DevTools
-
-**Sub-skills:**
-- Drawing optimization (reduce overdraw)
-- Texture atlas usage
-- Geometry batching
-- Off-screen rendering and caching
-- WebGL mode for hardware acceleration
-- Worker threads for heavy computation
-
-### 34. Memory Management
-
-**Skill: Resource Efficiency**
-- Image and media disposal
-- Array management strategies
-- Avoiding memory leaks
-- Garbage collection awareness
-
-**Sub-skills:**
-- Lazy loading techniques
-- Asset preloading strategies
-- Circular reference avoidance
-- Object reference cleanup
-
----
-
-## Creative Coding Patterns
-
-### 35. Generative Art Techniques
-
-**Skill: Algorithmic Art**
-- Fractal generation (Mandelbrot, Julia sets)
+**Skill: Generative Patterns**
+- Grid-based compositions
+- Recursive patterns
 - L-systems for organic growth
-- Cellular automata (Conway's Game of Life)
-- Reaction-diffusion patterns
-- Flow fields and vector fields
+- Cellular automata (Game of Life, etc.)
+
+**Skill: Randomized Layouts**
+- Poisson disc sampling for distribution
+- Voronoi diagrams
+- Delaunay triangulation
+- Random tiling and tesselation
+
+### 29. Particle Systems
+
+**Skill: Particle Simulation**
+- Particle class with physics
+- Emitter systems
+- Forces and fields
+- Collision detection
 
 **Sub-skills:**
-- Recursive drawing patterns
-- Symmetry and tiling
-- Randomized composition
-- Emergence and complexity
-- Color palette generation
+- Flocking behaviors (boids)
+- Spring systems
+- Attractor/repeller forces
+- Particle trails and decay
 
-### 36. Simulation and Modeling
+### 30. Fractal Generation
 
-**Skill: Natural Phenomena**
-- Fluid simulation
-- Particle flow systems
-- Gravity and planetary motion
-- Ecosystem modeling
-- Agent-based modeling
-
-**Sub-skills:**
-- Differential equations
-- Numerical integration methods
-- Spatial hashing for collisions
-- Behavioral AI (steering, flocking)
-- Environmental parameters
+**Skill: Fractal Drawing**
+- Recursive functions for fractals
+- Mandelbrot and Julia sets
+- Iterated function systems (IFS)
+- Fractal trees and plants
 
 ---
 
-## Project Patterns
+## DOM Manipulation
 
-### 37. Interactive Installations
+### 31. HTML Integration
 
-**Skill: Installation Development**
-- Fullscreen and immersive modes
-- Multi-screen synchronization
-- Sensor integration (Arduino, etc.)
-- Projection mapping alignment
-- Kiosk mode deployment
+**Skill: DOM Element Creation**
+- `createButton()`, `createSlider()`, `createInput()`
+- `createDiv()`, `createP()`, `createImg()`
+- `createSelect()` for dropdowns
+- Element positioning with `.position()`
 
-**Sub-skills:**
-- Hardware interfacing
-- Network communication (WebSockets)
-- State persistence
-- Idle state and screensaver
-- Reset and maintenance modes
-
-### 38. Mobile and Responsive Design
-
-**Skill: Cross-Device Development**
-- Touch optimization
-- Device orientation handling
-- Responsive canvas sizing
-- Mobile performance optimization
-- Progressive web app (PWA) setup
+**Skill: Event Handling**
+- `.mousePressed()` for element clicks
+- `.input()` for real-time input changes
+- `.changed()` for value changes
+- Custom event listeners
 
 **Sub-skills:**
-- Accelerometer and gyroscope access
-- Mobile browser quirks
-- Touch gesture libraries
-- Viewport meta tags
-- Mobile debugging techniques
+- Dynamic UI generation
+- CSS styling with `.style()`
+- Element parent-child relationships with `.parent()`
+- Element removal with `.remove()`
 
 ---
 
-## Community and Resources
+## Advanced Integration
 
-### 39. p5.js Ecosystem
+### 32. Library Extensions
 
-**Learning Resources:**
-- The Coding Train (Daniel Shiffman): https://thecodingtrain.com/
-- p5.js Tutorials: https://p5js.org/learn/
-- Nature of Code: https://natureofcode.com/
-- Generative Design: http://www.generative-gestaltung.de/2/
-
-**Community:**
-- p5.js Forum: https://discourse.processing.org/c/p5js
-- GitHub: https://github.com/processing/p5.js
-- OpenProcessing: https://openprocessing.org/
-- Editor Community Sketches
-
-**Compatible Libraries:**
-- ml5.js (Machine Learning)
-- matter.js (Physics)
-- Tone.js (Advanced Audio)
-- dat.GUI (Interface Controls)
-
-### 40. Best Practices
-
-**Skill: Professional Development**
-- Code organization and structure
-- Commenting and documentation
-- Version control with Git
-- Accessibility standards
-- Cross-browser testing
+**Skill: Third-Party Libraries**
+- ml5.js for machine learning
+- Matter.js for physics
+- Tone.js for advanced audio
+- p5.scribble for hand-drawn aesthetics
 
 **Sub-skills:**
-- ES6+ JavaScript features
-- Module systems (import/export)
-- Build tools (webpack, vite)
-- Code linting and formatting
-- Performance profiling
-- Unit testing creative code
+- Library import and initialization
+- Cross-library integration
+- Custom library creation
+- Performance considerations with multiple libraries
 
 ---
 
-## Key Differences from Processing
+## Learning Resources
 
-**JavaScript vs Java:**
-- Dynamic typing
-- Prototype-based OOP
-- Browser APIs available
-- Asynchronous programming patterns
+### Official Resources
+- [p5.js Reference](https://p5js.org/reference/)
+- [p5.js Examples](https://p5js.org/examples/)
+- [p5.js Tutorials](https://p5js.org/learn/)
+- [p5.js Web Editor](https://editor.p5js.org/)
 
-**Web-Specific Features:**
-- DOM integration
-- CSS styling
-- Web Audio API
-- WebGL acceleration
-- Mobile touch events
-- Web APIs (geolocation, camera, etc.)
+### Community Learning
+- [The Coding Train](https://thecodingtrain.com/) - Daniel Shiffman's video tutorials
+- [OpenProcessing](https://openprocessing.org/) - Community sketches
+- [p5.js Forum](https://discourse.processing.org/c/p5js/10)
 
-**Philosophy:**
-- Accessibility and inclusivity
-- Beginner-friendly documentation
-- Web-native from the ground up
-- Active community contributions
+### Books
+- "The Nature of Code" by Daniel Shiffman
+- "Getting Started with p5.js" by Lauren McCarthy et al.
+- "Generative Design" by Benedikt Gross et al.
+
+### Courses
+- Kadenze p5.js courses
+- Creative Coding on YouTube
+- University courses using p5.js
+
+---
+
+## Best Practices
+
+1. **Use preload() for assets:** Load images, fonts, and sounds before setup()
+2. **Organize with functions:** Break complex sketches into manageable functions
+3. **Comment your code:** Creative coding benefits from clear documentation
+4. **Optimize for performance:** Profile and optimize slow sections
+5. **Responsive design:** Use `windowWidth`/`windowHeight` for responsive canvases
+6. **Version control:** Use Git for sketch versioning
+7. **Cross-browser testing:** Test on multiple browsers and devices
+8. **Accessibility:** Consider color contrast and alternative text
+9. **Start simple:** Build complexity incrementally
+10. **Learn from examples:** Study and remix community sketches
+
+---
+
+## Common Patterns
+
+### Sketch Template
+```javascript
+function setup() {
+  createCanvas(400, 400);
+  // Initialization
+}
+
+function draw() {
+  background(220);
+  // Animation loop
+}
+```
+
+### Particle System Pattern
+```javascript
+let particles = [];
+
+function setup() {
+  createCanvas(600, 400);
+  for (let i = 0; i < 100; i++) {
+    particles.push(new Particle());
+  }
+}
+
+function draw() {
+  background(0, 10); // Trail effect
+  for (let p of particles) {
+    p.update();
+    p.show();
+  }
+}
+
+class Particle {
+  constructor() {
+    this.pos = createVector(random(width), random(height));
+    this.vel = p5.Vector.random2D();
+  }
+  
+  update() {
+    this.pos.add(this.vel);
+  }
+  
+  show() {
+    circle(this.pos.x, this.pos.y, 5);
+  }
+}
+```
+
+---
+
+**Version Reference:** p5.js 1.9+ (2025-2026)  
+**Last Updated:** February 2026
